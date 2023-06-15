@@ -1,0 +1,19 @@
+CREATE TABLE IF NOT EXISTS "category"(
+    id UUID PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    parent VARCHAR NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS "product"(
+    id UUID PRIMARY KEY,
+    photo VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    category_id UUID NOT NULl,
+    barcode UUID NOT NULL,
+    price DOUBLE PRECISION NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP
+    FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE CASCADE ON UPDATE CASCADE,
+);
