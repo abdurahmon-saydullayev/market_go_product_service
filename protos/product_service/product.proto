@@ -20,8 +20,7 @@ message CreateProduct {
     string photo = 1;
     string name = 2;
     string category_id = 3;
-    string barcode = 4;
-    float price = 5;
+    float price = 4;
 }
 
 message UpdateProduct {
@@ -29,8 +28,7 @@ message UpdateProduct {
     string photo = 2;
     string name = 3;
     string category_id = 4;
-    string barcode = 5;
-    float price = 6;
+    float price = 5;
 }
 
 message UpdatePatchProduct{ 

@@ -26,6 +26,8 @@ func NewProductRepo(db *pgxpool.Pool) *productRepo {
 func (c *productRepo) Create(ctx context.Context, req *product_service.CreateProduct) (resp *product_service.ProductPK, err error) {
 	id := uuid.New().String()
 
+	barcode := helper.GenerateBarcode(9)
+
 	query := `
 		INSERT INTO "product" (
 			id,
@@ -46,7 +48,7 @@ func (c *productRepo) Create(ctx context.Context, req *product_service.CreatePro
 		req.Photo,
 		req.Name,
 		req.CategoryId,
-		req.Barcode,
+		barcode,
 		req.Price,
 	)
 	if err != nil {
@@ -169,6 +171,7 @@ func (c *productRepo) GetList(ctx context.Context, req *product_service.GetListP
 		)
 
 		err := rows.Scan(
+			&resp.Count,
 			&id,
 			&photo,
 			&name,
@@ -203,6 +206,8 @@ func (c *productRepo) Update(ctx context.Context, req *product_service.UpdatePro
 		params map[string]interface{}
 	)
 
+	barcode := helper.GenerateBarcode(9)
+
 	query = `
 		UPDATE
 			"product"
@@ -220,7 +225,7 @@ func (c *productRepo) Update(ctx context.Context, req *product_service.UpdatePro
 		"photo":       req.GetPhoto(),
 		"name":        req.GetName(),
 		"category_id": req.GetCategoryId(),
-		"barcode":     req.GetBarcode(),
+		"barcode":     barcode,
 		"price":       req.GetPrice(),
 	}
 

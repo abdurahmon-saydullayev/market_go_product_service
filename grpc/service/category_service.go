@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"fmt"
 	"product_service/config"
 	"product_service/genproto/product_service"
 	"product_service/grpc/client"
@@ -66,7 +67,7 @@ func (i *CategoryService) GetByID(ctx context.Context, req *product_service.Cate
 func (i *CategoryService) GetList(ctx context.Context, req *product_service.GetListCategoryRequest) (resp *product_service.GetListCategoryResponse, err error) {
 
 	i.log.Info("---GetCategorys------>", logger.Any("req", req))
-
+	fmt.Println("slkd")
 	resp, err = i.strg.Category().GetList(ctx, req)
 	if err != nil {
 		i.log.Error("!!!GetCategorys->Category->Get--->", logger.Error(err))

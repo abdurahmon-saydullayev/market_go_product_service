@@ -101,7 +101,7 @@ func (c *categoryRepo) GetList(ctx context.Context, req *product_service.GetList
 		offset = " OFFSET 0 "
 		params = make(map[string]interface{})
 		filter = " WHERE TRUE "
-		sort   = " ORDER BY created_at DESC"
+		sort   = " ORDER BY created_at DESC "
 	)
 
 	query = `

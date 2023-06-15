@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS "product"(
     photo VARCHAR(255) NOT NULL,
     name VARCHAR(255) NOT NULL,
     category_id UUID NOT NULl,
-    barcode UUID NOT NULL,
+    barcode VARCHAR(9) NOT NULL,
     price DOUBLE PRECISION NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP,

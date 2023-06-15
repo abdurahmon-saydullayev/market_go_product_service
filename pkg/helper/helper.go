@@ -1,11 +1,12 @@
 package helper
 
 import (
-	"crypto/rand"
 	"database/sql"
 	"fmt"
+	"math/rand"
 	"strconv"
 	"strings"
+	"time"
 )
 
 func ReplaceQueryParams(namedQuery string, params map[string]interface{}) (string, []interface{}) {
@@ -145,4 +146,18 @@ func CombineFirstLetters(str1, str2 string) string {
 	firstLetter1 := string(str1[0])
 	firstLetter2 := string(str2[0])
 	return strings.ToUpper(firstLetter1 + firstLetter2)
+}
+
+func GenerateBarcode(length int) string {
+	rand.Seed(time.Now().UnixNano())
+
+	// Define the character set for the barcode
+	charset := "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+
+	barcode := make([]byte, length)
+	for i := range barcode {
+		barcode[i] = charset[rand.Intn(len(charset))]
+	}
+
+	return string(barcode)
 }
